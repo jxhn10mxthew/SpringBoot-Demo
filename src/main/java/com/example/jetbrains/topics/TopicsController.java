@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 
 
@@ -46,5 +47,11 @@ import org.springframework.web.bind.annotation.RestController;
 			topicService.deleteTopic(id);
 			return "Success"; 
 		}
+		@GetMapping(value="/blah")
+		public String getAPI() {
+			String uri="http://jbshc1.in2.allegiantair.com:10780/g4-checkinboard/v1/api/travelers?confirmationNum=BXG7YC";
+			RestTemplate restTemplate=new RestTemplate();
+			String result=restTemplate.getForObject(uri, String.class);
+			return result;
 	}
-
+	}
