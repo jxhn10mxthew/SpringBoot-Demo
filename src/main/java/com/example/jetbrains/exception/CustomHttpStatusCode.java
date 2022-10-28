@@ -9,7 +9,7 @@ public class CustomHttpStatusCode {
 	
 	@ExceptionHandler(ResourceNotFoundException.class)
     public String handleException(Exception ex, HttpServletResponse response) {
-		response.setStatus(460);
+		response.setStatus(867);
         return ex.getMessage();
 }
 }

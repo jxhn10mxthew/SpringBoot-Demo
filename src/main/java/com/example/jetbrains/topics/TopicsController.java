@@ -53,5 +53,5 @@ import org.springframework.web.client.RestTemplate;
 			RestTemplate restTemplate=new RestTemplate();
 			String result=restTemplate.getForObject(uri, String.class);
 			return result;
-	}
-	}
+		}
+}
