@@ -1,4 +1,4 @@
-package com.example.jetbrains;
+package com.myproject;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -8,8 +8,8 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.example.jetbrains.topics.Topics;
-import com.example.jetbrains.topics.TopicsRepo;
+import com.myproject.topics.Topic;
+import com.myproject.topics.TopicsRepo;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -20,7 +20,7 @@ class TestRepository {
 	@Test
 	@Order(1)
 	public void testCreate() {
-		Topics topic=new Topics (23,"abc21","j212hk");
+		Topic topic=new Topic (23,"abc21","j212hk","lk");
 		topicrepo.save(topic);
 		Boolean result=topicrepo.existsById(23);
 		assertThat(result).isTrue();
@@ -28,13 +28,13 @@ class TestRepository {
 	@Test
 	@Order(2)
 	public void testReadAll() {
-		List<Topics> list=topicrepo.findAll();
+		List<Topic> list=topicrepo.findAll();
 		assertThat(list).size().isGreaterThan(0);
 	}
 	@Test
 	@Order(3)
 	public void testupdate() {
-		Topics topics=topicrepo.findById(9).get();
+		Topic topics=topicrepo.findById(9).get();
 		topics.setName("john");
 		topics.setDescription("descrioptoipn");
 		topicrepo.save(topics);

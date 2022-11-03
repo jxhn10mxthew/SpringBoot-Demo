@@ -1,4 +1,4 @@
-package com.example.jetbrains.exception;
+package com.myproject.exception;
 
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.ExceptionHandler;

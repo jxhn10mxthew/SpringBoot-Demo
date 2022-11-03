@@ -1,6 +1,8 @@
-package com.example.jetbrains.topics;
+package com.myproject.topics;
 
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,22 +24,22 @@ import org.springframework.web.client.RestTemplate;
 		@Autowired
 		private TopicsService topicService;
 		@RequestMapping("/topics")
-		public List<Topics> getallTopics() {
+		public List<Topic> getallTopics() {
 			return topicService.getallTopics();
 		}
 		
 		@GetMapping("/topics/{id}")
-		public Topics getTopic(@PathVariable Integer id) {
+		public Topic getTopic(@PathVariable Integer id) {
 			return topicService.getTopic(id);
 		}
 		@ResponseStatus(HttpStatus.CREATED)
 		@PostMapping(value="/topics")
-		public Topics addTopic(@RequestBody Topics topic) {
+		public Topic addTopic(@Valid @RequestBody Topic topic) {
 			return topicService.addTopic(topic);
 		}
 		@ResponseStatus(HttpStatus.CREATED)
 		@RequestMapping(method=RequestMethod.PUT,value="/topics/{id}")
-		public String updateTopic(@RequestBody Topics topic,@PathVariable Integer id) {
+		public String updateTopic(@Valid @RequestBody Topic topic,@PathVariable Integer id) {
 			topic.setId(id);
 			topicService.updateTopic(topic);
 			return "Topic is updated successfully";

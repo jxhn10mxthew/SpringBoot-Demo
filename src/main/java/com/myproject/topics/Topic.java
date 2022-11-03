@@ -1,27 +1,31 @@
-package com.example.jetbrains.topics;
+package com.myproject.topics;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table
-public class Topics {
+public class Topic {
 		
 		@Id
-		@GeneratedValue
+		//@GeneratedValue(strategy=GenerationType.SEQUENCE)
 		private Integer id;
 		private String name;
 		private String description;
 		
-		public Topics() {}
+		@Size(min=4,max=8,message="Password must be between 4 to 10 characters")
+		private String password;
 		
-		public Topics(Integer id, String name, String description) {
+		public Topic() {}
+		
+		public Topic(Integer id, String name, String description,String password) {
 			super();
 			this.id = id;
 			this.name = name;
 			this.description = description;
+			this.password=password;
 		}
 		public Integer getId() {
 			return id;
@@ -40,6 +44,12 @@ public class Topics {
 		}
 		public void setDescription(String description) {
 			this.description = description;
+		}
+		public String getPassword() {
+			return password;
+		}
+		public void setPassword(String password) {
+			this.password = password;
 		}
 }
 

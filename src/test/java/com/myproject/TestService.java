@@ -1,4 +1,4 @@
-package com.example.jetbrains;
+package com.myproject;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,9 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.jetbrains.topics.Topics;
-import com.example.jetbrains.topics.TopicsRepo;
-import com.example.jetbrains.topics.TopicsService;
+import com.myproject.topics.Topic;
+import com.myproject.topics.TopicsRepo;
+import com.myproject.topics.TopicsService;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
@@ -30,15 +30,15 @@ public class TestService {
 	
 	@InjectMocks
 	private TopicsService service;
-	private Topics topic1;
-	private Topics topic2;
-	List<Topics> topicList;
+	private Topic topic1;
+	private Topic topic2;
+	List<Topic> topicList;
 	
 	@BeforeEach
 	 public void setUp() {
 	    topicList = new ArrayList<>();
-	    topic1 = new Topics(1, "bread","ds");
-	    topic2 = new Topics(2, "jam","fg");
+	    topic1 = new Topic(1, "bread","ds","dh");
+	    topic2 = new Topic(2, "jam","fg","hf");
 	    topicList.add(topic1);
 	    topicList.add(topic2);
 	    }
@@ -69,7 +69,7 @@ public class TestService {
 	public void testGetAllTopics() {
 		repo.save(topic1);
 	    when(repo.findAll()).thenReturn(topicList);
-	    List<Topics> topicList1 =service.getallTopics();
+	    List<Topic> topicList1 =service.getallTopics();
 	    assertEquals(topicList1,topicList);
 	    verify(repo,times(1)).save(topic1);
 	    verify(repo,times(1)).findAll();

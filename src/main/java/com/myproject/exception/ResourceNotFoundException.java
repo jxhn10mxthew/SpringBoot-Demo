@@ -1,4 +1,4 @@
-package com.example.jetbrains.exception;
+package com.myproject.exception;
 
 
 public class ResourceNotFoundException extends RuntimeException {

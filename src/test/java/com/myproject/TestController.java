@@ -1,4 +1,4 @@
-package com.example.jetbrains;
+package com.myproject;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -29,9 +29,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.example.jetbrains.topics.Topics;
-import com.example.jetbrains.topics.TopicsController;
-import com.example.jetbrains.topics.TopicsService;
+import com.myproject.topics.Topic;
+import com.myproject.topics.TopicsController;
+import com.myproject.topics.TopicsService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 @ExtendWith(MockitoExtension.class)
@@ -39,8 +39,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class TestController {
 @MockBean
 private TopicsService service;
-private Topics topic;
-private List<Topics> topicList;
+private Topic topic;
+private List<Topic> topicList;
 
 @InjectMocks
 private TopicsController controller;
@@ -50,7 +50,7 @@ private MockMvc mockMvc;
 
 @BeforeEach
 public void setup() {
-	topic=new Topics(1,"tty","gfg");
+	topic=new Topic(1,"tty","gfg","vhg");
 	mockMvc=MockMvcBuilders.standaloneSetup(controller).build();
 }
 
@@ -111,7 +111,7 @@ protected String mapToJson(Object obj) throws JsonProcessingException {
  }
 @Test
 public void updateTopicMapping() throws Exception {
-   Topics topic = new Topics();
+   Topic topic = new Topic();
    topic.setName("Lemon");
    
    String inputJson = mapToJson(topic);

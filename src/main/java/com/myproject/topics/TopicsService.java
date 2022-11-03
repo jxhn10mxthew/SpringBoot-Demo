@@ -1,4 +1,4 @@
-package com.example.jetbrains.topics;
+package com.myproject.topics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.jetbrains.exception.ResourceNotFoundException;
+import com.myproject.exception.ResourceNotFoundException;
 
 
 @Service
@@ -16,21 +16,21 @@ public class TopicsService {
 	private TopicsRepo topicRepository;
 	
 	
-	public List<Topics> getallTopics(){
-		List<Topics> topics= new ArrayList<>();
+	public List<Topic> getallTopics(){
+		List<Topic> topics= new ArrayList<>();
 		topicRepository.findAll()
 		.forEach(topics::add);
 		return topics;
 	}
-	public Topics getTopic(Integer id) {
+	public Topic getTopic(Integer id) {
 		return topicRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Topic","Id",id));
 	}
-	public Topics addTopic(Topics topic) {
+	public Topic addTopic(Topic topic) {
 		return topicRepository.save(topic);
 		
 		
 	}
-	public String updateTopic(Topics topic) {
+	public String updateTopic(Topic topic) {
 		
 		topicRepository.save(topic);
 		return "Topic is updated successfully";
